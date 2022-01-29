@@ -9,6 +9,8 @@ SO THAT I can manage my time effectively
 HTML
 CSS
 Javascript
+jQuery
+Bootstrap
 
 #### Website
 

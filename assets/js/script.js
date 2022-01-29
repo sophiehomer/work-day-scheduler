@@ -10,7 +10,6 @@ $(document).ready(function() {
         /* ---------------------------- Local Storage ---------------------------- */
          localStorage.setItem(time, description);
     })
-   
     let nineAm = localStorage.getItem("9am");
     let tenAm = localStorage.getItem("10am");
     let elevenAm = localStorage.getItem("11am");
@@ -20,7 +19,6 @@ $(document).ready(function() {
     let threePm = localStorage.getItem("3pm");
     let fourPm = localStorage.getItem("4pm");
     let fivePm = localStorage.getItem("5pm");
-
     
     /* ---- Use jquery syntax to target description in specific time block --- */
         /* ----------- set value to local storage of corresponding hour ---------- */
@@ -37,28 +35,29 @@ $(document).ready(function() {
 })
 
 /* ---------------------------------- DATE ---------------------------------- */
+let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 let currentDay;
 currentDay = new Date();
-document.querySelector("#currentDay").innerHTML = currentDay
+let displayDate = currentDay.toLocaleDateString("en-US", options)
+document.querySelector("#currentDay").innerHTML = displayDate
 console.log(currentDay.toString());
-
-
-
-
-
-
+let currentHour = currentDay.getHours();
+console.log(currentHour);
 
 /* --------------- Background Color - Past, Present, Future --------------- */
 
-/* ------------------------------- Textarea ------------------------------ */
-
-/* ----------------------------- Time Blocks ----------------------------- */
-
-/* --------------------------- Time Block Event -------------------------- */
-
-/* ----------------------------- Save Button ----------------------------- */
-
-/* ------------------- Refresh -- Saved Events Persist ------------------- */
-
+$(".description").each(function() {
+var timeBlockTime = $(this).data("id");
+console.log(timeBlockTime)
+if (currentHour > timeBlockTime) {
+    $(this).addClass("past")
+}
+else if (currentHour === timeBlockTime) {
+    $(this).addClass("present")
+}
+else {
+    $(this).addClass("future")
+}
+})
 
 
